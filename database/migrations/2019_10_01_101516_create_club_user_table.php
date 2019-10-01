@@ -17,7 +17,7 @@ class CreateClubUserTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('club_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->timestamps();
+            $table->unique(['club_id', 'user_id']);
         });
     }
 
