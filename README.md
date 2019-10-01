@@ -2,7 +2,7 @@
 API for Clubber application - Laravel + GraphQL
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 * PHP >= 7.1.3
@@ -31,3 +31,10 @@ For quick starting of PHP built-in web server, in the root of the cloned project
 php artisan serve
 ```
 And go to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+### Migration and seeding
+If you need fresh and dummy data in your dev DB, run this command:
+
+```
+php artisan migrate:refresh --seed
+```
