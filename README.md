@@ -36,5 +36,5 @@ And go to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 If you need fresh and dummy data in your dev DB, run this command:
 
 ```
-php artisan migrate:refresh --seed
+php artisan migrate:fresh --seed
 ```
