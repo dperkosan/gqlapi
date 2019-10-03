@@ -16,7 +16,9 @@ class CreateClubUserTable extends Migration
         Schema::create('club_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('club_id')->unsigned();
+            $table->foreign('club_id')->references('id')->on('clubs');
             $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unique(['club_id', 'user_id']);
         });
     }
