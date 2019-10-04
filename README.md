@@ -45,3 +45,34 @@ If you need to test GraphQL queries, go to this page in your browser to open Gra
 ```
 http://127.0.0.1:8000/graphql-playground
 ```
+
+### GraphQL query examples
+Return 5 clubs for second page with pager information:
+
+```
+{
+  clubs(first:5 page: 2){
+    data{
+      id
+      name
+      events{
+        id
+        name
+      }
+      users{
+        name
+      }
+    }
+    paginatorInfo {
+      hasMorePages
+      currentPage
+      lastPage
+      count
+      firstItem
+      lastItem
+      perPage
+      total
+    }
+  }
+}
+```
