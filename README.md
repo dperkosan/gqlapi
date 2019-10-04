@@ -43,5 +43,5 @@ php artisan migrate:fresh --seed
 If you need to test GraphQL queries, go to this page in your browser to open GraphQL playground:
 
 ```
-[http://127.0.0.1:8000/graphql-playground](http://127.0.0.1:8000/graphql-playground)
+http://127.0.0.1:8000/graphql-playground
 ```
