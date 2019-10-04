@@ -76,3 +76,21 @@ Return 5 clubs for second page with pager information:
   }
 }
 ```
+
+Return data for club with ID 1:
+
+```
+{
+  club(id: 1){
+    id
+    name
+    events{
+      id
+      name
+    }
+    users{
+      name
+    }
+  }
+}
+```
