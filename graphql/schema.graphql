@@ -17,6 +17,12 @@ enum Role {
 type Query {
     users: [User!]! @paginate(type: "paginator" model: "App\\User")
     user(id: ID @eq): User @find(model: "App\\User")
+
+    clubs: [Club!]! @paginate(type: "paginator" model: "App\\Club")
+    club(id: ID @eq): Club @find(model: "App\\Club")
+
+    events: [Event!]! @paginate(type: "paginator" model: "App\\Event")
+    event(id: ID @eq): Event @find(model: "App\\Event")
 }
 
 type User {
@@ -28,4 +34,38 @@ type User {
     role: Role!
     created_at: DateTime!
     updated_at: DateTime!
+    clubs: [Club!]! @belongsToMany
+}
+
+type Club {
+    id: ID!
+    name: String!
+    image: String!
+    klabana: Int!
+    phone: String!
+    rank: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    users: [User!]! @belongsToMany
+    events: [Event!]! @hasMany
+}
+
+type Event {
+    id: ID!
+    club_id: Int!
+    name: String!
+    description: String!
+    start_time: DateTime!
+    end_time: DateTime!
+    place: String!
+    country: String!
+    city: String!
+    street: String!
+    zip: String!
+    latitude: String!
+    longitude: String!
+    image: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    club: Club! @belongsTo
 }
