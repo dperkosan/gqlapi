@@ -18,11 +18,82 @@ type Query {
     users: [User!]! @paginate(type: "paginator" model: "App\\User")
     user(id: ID @eq): User @find(model: "App\\User")
 
-    clubs: [Club!]! @paginate(type: "paginator" model: "App\\Club")
+    clubs(klabana: Int @eq): [Club!]! @paginate(type: "paginator" model: "App\\Club")
     club(id: ID @eq): Club @find(model: "App\\Club")
 
     events: [Event!]! @paginate(type: "paginator" model: "App\\Event")
     event(id: ID @eq): Event @find(model: "App\\Event")
+}
+
+type Mutation {
+    createClub(input: CreateClubInput! @spread): Club @create(model: "App\\Club")
+
+    updateClub(input: UpdateClubInput! @spread): Club @update(model: "App\\Club")
+
+    deleteClub(id: ID!): Club @delete(model: "App\\Club")
+
+    createEvent(
+        club_id: Int!
+        name: String!
+        description: String!
+        start_time: DateTime!
+        end_time: DateTime!
+        place: String!
+        country: String!
+        city: String!
+        street: String!
+        zip: String!
+        latitude: String!
+        longitude: String!
+        image: String!
+    ): Event @create(model: "App\\Event")
+
+    updateEvent(
+        id: ID!
+        club_id: Int
+        name: String
+        description: String
+        start_time: DateTime
+        end_time: DateTime
+        place: String
+        country: String
+        city: String
+        street: String
+        zip: String
+        latitude: String
+        longitude: String
+        image: String
+    ): Event @update(model: "App\\Event")
+
+    deleteEvent(id: ID!): Event @delete(model: "App\\Event")
+}
+
+input CreateClubInput {
+    name: String!
+    image: String!
+    klabana: Int!
+    phone: String!
+    rank: Int!
+    users: CreateUserRelation!
+}
+
+input CreateUserRelation {
+    connect: [ID!]
+}
+
+input UpdateClubInput {
+    id: ID!
+    name: String
+    image: String
+    klabana: Int
+    phone: String
+    rank: Int
+    users: UpdateUserRelation
+}
+
+input UpdateUserRelation {
+    disconnect: [ID!]
+    connect: [ID!]
 }
 
 type User {

@@ -47,11 +47,11 @@ http://127.0.0.1:8000/graphql-playground
 ```
 
 ### GraphQL query examples
-Return 5 clubs for second page with pager information:
+Return 5 (klabana) clubs for second page with pager information:
 
 ```
 {
-  clubs(first:5 page: 2){
+  clubs(first:5 page: 2  klabana: 1){
     data{
       id
       name
@@ -91,6 +91,58 @@ Return data for club with ID 1:
     users{
       name
     }
+  }
+}
+```
+
+Create new club, associate existing user and return ID and users name:
+
+```
+mutation{
+  createClub(input: {
+    name: "New club" 
+    image: "https://lorempixel.com/640/480/?25908" 
+    klabana: 0 
+    phone: "111222" 
+    rank: 0
+  	users: {
+    	connect: [4]
+  	}
+  }){
+    id
+    users{
+      name
+    }
+  }
+}
+```
+
+Update club name, change it's user (disconnect existing one and connect new one) and return ID and new users name:
+
+```
+mutation{
+  updateClub(input: {
+    id: 101
+    name: "New name"
+  	users: {
+      disconnect: [4]
+      connect: [5]
+  	}
+  }){
+    id
+    users{
+      name
+    }
+  }
+}
+```
+
+Delete club and return ID:
+
+```
+mutation{
+  deleteClub(id: 101){
+    id
   }
 }
 ```
