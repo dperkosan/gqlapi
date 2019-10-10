@@ -146,3 +146,49 @@ mutation{
   }
 }
 ```
+Create new event and return ID:
+
+```
+mutation{
+  createEvent(
+    club_id: 100
+    name: "event name"
+    description: "event description"
+    start_time: "2019-10-01 13:00:00"
+    end_time: "2019-10-01 14:00:00"
+    place: "jolly"
+    country: "SR"
+    city: "Beograd"
+    street: "M.O. 13"
+    zip: "11000"
+    latitude: "0"
+    longitude: "0"
+    image: "https://lorempixel.com/640/480/?50623"
+  ){
+    id
+  }
+}
+```
+
+Update event name and return ID:
+
+```
+mutation{
+  updateEvent(
+    id: 1001
+    name: "new name"
+  ){
+    id
+  }
+}
+```
+
+Delete event and return ID:
+
+```
+mutation{
+  deleteEvent(id: 1001){
+    id
+  }
+}
+```
