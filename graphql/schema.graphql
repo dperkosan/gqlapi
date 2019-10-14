@@ -23,6 +23,8 @@ type Query {
 
     events: [Event!]! @paginate(type: "paginator" model: "App\\Event")
     event(id: ID @eq): Event @find(model: "App\\Event")
+
+    me: User! @middleware(checks: ["auth:api"]) @auth
 }
 
 type Mutation {

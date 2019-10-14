@@ -192,3 +192,75 @@ mutation{
   }
 }
 ```
+
+### Authentication (GraphQL with Laravel passport)
+[https://github.com/joselfonseca/lighthouse-graphql-passport-auth](https://github.com/joselfonseca/lighthouse-graphql-passport-auth)
+
+Login and get token:
+
+```
+mutation{
+  login(input:{
+    username: "admin@example.com"
+    password: "password"
+  }){
+    access_token
+  }
+}
+```
+
+Get authenticated user data (with token):
+
+```
+query{
+  me{
+    id
+    name
+    email
+  }
+}
+```
+
+In order for this to work, you must pass token of authenticated user. So in HTTP header there must be:
+```
+{
+ "Authorization": "Bearer $TOKEN"
+}
+```
+
+Logout (don't forget to pass the token also):
+```
+mutation{
+  logout{
+    status
+    message
+  }
+}
+```
+
+Forgot password - get link for password reset (no need for token :) ):
+```
+mutation{
+  forgotPassword(input:{
+    email: "admin@example.com"
+  }){
+    status
+    message
+  }
+}
+```
+
+Update forgotten password (with token from previous step):
+```
+mutation{
+  updateForgottenPassword(input:{
+    email: "admin@example.com"
+    token: "bad6785907c6aba61f6856bae29fa3bf02e117c20452635f0a6fd3ce9484ac9c"
+    password: "newpassword"
+    password_confirmation: "newpassword"
+  }){
+    status
+    message
+  }
+}
+```
